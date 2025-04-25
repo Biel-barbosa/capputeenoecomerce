@@ -127,7 +127,7 @@ const ProductPage = () => {
       addToCart(product);
       // Exibir o toast após adicionar ao carrinho
       toast.success('Produto adicionado ao carrinho!', {
-        position: 'top-right',
+        position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000, // Toast ficará visível por 2 segundos
       });
     }

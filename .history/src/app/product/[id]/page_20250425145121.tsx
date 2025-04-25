@@ -4,10 +4,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useCart } from '@/contexts/CartContexts';
 import styled from 'styled-components';
-import Header from '@/components/Header';
+import Header from '@/components/Header'; 
 import { Product } from '@/data/products';  // Importando o tipo Product
-import { toast, ToastContainer } from 'react-toastify'; // Importando a biblioteca de toast
-import 'react-toastify/dist/ReactToastify.css'; // Importando os estilos do Toast
 
 const ProductPageContainer = styled.div`
   display: flex;
@@ -125,11 +123,6 @@ const ProductPage = () => {
   const handleAddToCart = () => {
     if (validPrice > 0) {
       addToCart(product);
-      // Exibir o toast após adicionar ao carrinho
-      toast.success('Produto adicionado ao carrinho!', {
-        position: 'top-right',
-        autoClose: 2000, // Toast ficará visível por 2 segundos
-      });
     }
   };
 
@@ -156,9 +149,6 @@ const ProductPage = () => {
           </ProductInfo>
         </ProductDetails>
       </ProductPageContainer>
-
-      {/* Toast container para exibir as notificações */}
-      <ToastContainer />
     </>
   );
 };
