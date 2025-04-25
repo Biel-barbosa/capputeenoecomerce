@@ -32,12 +32,11 @@ const FiltersWrapper = styled.div`
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 2rem;
-  padding: 0 10rem; 
+  padding: 0rem 8rem;
 
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 1rem;
-    padding: 0 1rem; 
   }
 `;
 

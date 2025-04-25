@@ -32,12 +32,12 @@ const FiltersWrapper = styled.div`
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 2rem;
-  padding: 0 10rem; 
+  padding: 0 10rem; /* Ajuste para o desktop, 5rem é mais equilibrado */
 
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 1rem;
-    padding: 0 1rem; 
+    padding: 0 1rem; /* Menos padding no mobile para evitar quebra de layout */
   }
 `;
 
