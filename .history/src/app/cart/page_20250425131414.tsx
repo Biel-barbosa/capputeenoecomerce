@@ -4,34 +4,24 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Header from '@/components/Header';
 import Link from 'next/link';
-import { useCart } from '@/contexts/CartContexts';
+import { useCart } from '@/contexts/CartContext';
 import { Product } from '@/data/products';
 
 const PageWrapper = styled.div`
   background-color: #f0f0f5;
   min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
 `;
 
 const Container = styled.div<{ isEmpty: boolean }>`
   max-width: 1440px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 0 2rem;
   display: flex;
   flex-direction: ${({ isEmpty }) => (isEmpty ? 'column' : 'row')};
   justify-content: ${({ isEmpty }) => (isEmpty ? 'center' : 'space-between')};
   align-items: ${({ isEmpty }) => (isEmpty ? 'center' : 'flex-start')};
   gap: 2rem;
-
-  /* Responsividade para telas menores */
-  @media (max-width: 1024px) {
-    padding: 2rem;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    padding: 1rem;
-  }
+  height: 100vh;
 `;
 
 const ProductsSection = styled.div`
@@ -39,171 +29,104 @@ const ProductsSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-
-  /* Responsividade para telas menores */
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-const ProductCard = styled.div`
-  display: flex;
-  flex-direction: row; 
-  gap: 1.5rem;
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  align-items: center; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-
-  /* Responsividade para telas menores */
-  @media (max-width: 768px) {
-    flex-direction: row;  
-    padding: 1rem;
-    gap: 1rem; 
-  }
-`;
-
-const ProductImage = styled.img`
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-
-  @media (max-width: 768px) {
-    width: 100px;
-    height: 100px;
-  }
-`;
-
-const ProductInfo = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-`;
-
-
-const Title = styled.h3`
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #41414d;
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
-`;
-
-const Price = styled.span`
-  color: #41414D;
-  font-weight: bold;
-  font-size: 1rem;
-`;
-
-const Controls = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #41414D;
-
-  span {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #41414D;
-  }
-`;
-
-const ControlButton = styled.button`
-  background: #e0e0e0;
-  border: none;
-  border-radius: 6px;
-  padding: 0.4rem 0.8rem;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.2s;
-
-  &:hover {
-    background: #d5d5d5;
-  }
-`;
-
-const RemoveButton = styled.button`
-  background: transparent;
-  border: none;
-  color: #de3838;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: bold;
-
-  &:hover {
-    text-decoration: underline;
-  }
 `;
 
 const SummarySection = styled.div`
   flex: 1;
   background: white;
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
   height: fit-content;
-  color: #41414D;
-
-  /* Responsividade para telas menores */
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 1rem;
-  }
 `;
 
-const SummaryTitle = styled.h2`
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-  color: #41414D;
+const ProductCard = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  align-items: center;
+`;
 
-  /* Responsividade para telas menores */
-  @media (max-width: 768px) {
-    font-size: 1.25rem;
-  }
+const ProductImage = styled.img`
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+`;
+
+const ProductInfo = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Controls = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+`;
+
+const ControlButton = styled.button`
+  background: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+`;
+
+const RemoveButton = styled.button`
+  background: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+`;
+
+const Title = styled.h3`
+  margin: 0;
+  font-size: 1rem;
+`;
+
+const Price = styled.span`
+  color: #737380;
+  font-weight: bold;
 `;
 
 const SummaryItem = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.25rem;
-  font-size: 1rem;
-  
-  @media (max-width: 768px) {
-    font-size: 0.95rem;
-  }
+  margin-bottom: 1rem;
+`;
+
+const SummaryTitle = styled.h2`
+  margin-bottom: 2rem;
 `;
 
 const Total = styled.strong`
-  font-size: 1.25rem;
-  color: #09090a;
+  font-size: 1.2rem;
 `;
 
-const CheckoutButton = styled.button<{ disabled?: boolean }>`
+const CheckoutButton = styled.button`
   width: 100%;
-  padding: 1rem;
-  background: ${({ disabled }) => (disabled ? '#9ed6a0' : '#51b853')};
+  padding: 0.75rem;
+  background: #115d8c;
   color: white;
   font-weight: bold;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  transition: background 0.2s;
+  margin-top: 2rem;
+  cursor: pointer;
 
   &:hover {
-    background: ${({ disabled }) => (disabled ? '#9ed6a0' : '#4aa24b')};
+    background: #0d4c74;
   }
 `;
 
 const HelpLinks = styled.div`
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   font-size: 0.875rem;
   color: #737380;
 
@@ -224,7 +147,7 @@ const EmptyCartMessage = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 100vh;
   text-align: center;
 
   p {
@@ -252,9 +175,8 @@ const EmptyCartMessage = styled.div`
 type CartItem = Product & { quantity: number };
 
 export default function CartPage() {
-  const { cart, updateCart } = useCart();
+  const { cart, updateCart, removeFromCart } = useCart();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem('cart');
@@ -275,15 +197,6 @@ export default function CartPage() {
     const updated = cartItems.filter(item => item.id !== id);
     updateCart(updated);
     setCartItems(updated);
-  };
-
-  const handleCheckout = async () => {
-    setIsProcessing(true);
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    updateCart([]);
-    localStorage.removeItem('cart');
-    alert('Compra finalizada com sucesso!');
-    window.location.href = '/';
   };
 
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -336,9 +249,7 @@ export default function CartPage() {
                 <Total>R$ {total.toFixed(2)}</Total>
               </SummaryItem>
 
-              <CheckoutButton onClick={handleCheckout} disabled={isProcessing}>
-                {isProcessing ? 'Finalizando compra...' : 'Finalizar a compra'}
-              </CheckoutButton>
+              <CheckoutButton>Finalizar a compra</CheckoutButton>
 
               <HelpLinks>
                 <a href="#">Ajuda</a>

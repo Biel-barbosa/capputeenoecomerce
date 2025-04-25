@@ -48,19 +48,19 @@ const ProductsSection = styled.div`
 
 const ProductCard = styled.div`
   display: flex;
-  flex-direction: row; 
+  flex-direction: row; /* Garante que a imagem fique à esquerda e o texto à direita */
   gap: 1.5rem;
   background: #fff;
   padding: 1.5rem;
   border-radius: 12px;
-  align-items: center; 
+  align-items: center; /* Alinha a imagem e as informações verticalmente */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 
   /* Responsividade para telas menores */
   @media (max-width: 768px) {
-    flex-direction: row;  
+    flex-direction: row;  /* Em telas menores, mantém a imagem à esquerda e o texto à direita */
     padding: 1rem;
-    gap: 1rem; 
+    gap: 1rem; /* Reduz o espaço entre a imagem e o texto */
   }
 `;
 
@@ -70,6 +70,7 @@ const ProductImage = styled.img`
   object-fit: cover;
   border-radius: 8px;
 
+  /* Responsividade para telas menores */
   @media (max-width: 768px) {
     width: 100px;
     height: 100px;
@@ -90,6 +91,7 @@ const Title = styled.h3`
   font-weight: 600;
   color: #41414d;
 
+  /* Responsividade para telas menores */
   @media (max-width: 768px) {
     font-size: 1rem;
   }
@@ -174,7 +176,8 @@ const SummaryItem = styled.div`
   justify-content: space-between;
   margin-bottom: 1.25rem;
   font-size: 1rem;
-  
+
+  /* Responsividade para telas menores */
   @media (max-width: 768px) {
     font-size: 0.95rem;
   }

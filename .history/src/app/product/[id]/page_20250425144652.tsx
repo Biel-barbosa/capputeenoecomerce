@@ -12,12 +12,7 @@ const ProductPageContainer = styled.div`
   padding: 2rem;
   background-color: #f9f9f9;
   justify-content: center;
-  flex-direction: column; /* Para telas pequenas */
-
-  /* Maior espaçamento nas laterais em telas maiores */
-  @media (min-width: 1024px) {
-    padding: 2rem 12rem; /* Mais espaçamento nas laterais */
-  }
+  flex-direction: column; /* Adicionando flex-direction column para telas pequenas */
 `;
 
 const ProductDetails = styled.div`

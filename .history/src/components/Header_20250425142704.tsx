@@ -14,7 +14,6 @@ const HeaderContainer = styled.header`
   padding: 1rem 6vw;
   background-color: #f5f5fa;
   box-sizing: border-box;
-  overflow-x: hidden;
 `;
 
 const HeaderContent = styled.div`
@@ -59,8 +58,7 @@ const SearchWrapper = styled.div`
   }
 
   @media (max-width: 768px) {
-    max-width: 180px;
-    flex-shrink: 1;
+    max-width: 100%;
   }
 `;
 
@@ -83,7 +81,7 @@ const SearchInput = styled.input`
     font-size: 0.9rem;
 
     &::placeholder {
-      color: transparent;
+      color: transparent; // Esconde o placeholder no mobile
     }
   }
 `;

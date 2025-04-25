@@ -16,7 +16,7 @@ const ProductPageContainer = styled.div`
 
   /* Maior espaçamento nas laterais em telas maiores */
   @media (min-width: 1024px) {
-    padding: 2rem 12rem; /* Mais espaçamento nas laterais */
+    padding: 2rem 8rem; /* Mais espaçamento nas laterais */
   }
 `;
 

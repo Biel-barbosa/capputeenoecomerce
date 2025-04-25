@@ -9,14 +9,14 @@ import { Product } from '@/data/products';  // Importando o tipo Product
 
 const ProductPageContainer = styled.div`
   display: flex;
-  padding: 2rem;
+  padding: 2rem 8rem;
   background-color: #f9f9f9;
   justify-content: center;
   flex-direction: column; /* Para telas pequenas */
 
   /* Maior espaçamento nas laterais em telas maiores */
   @media (min-width: 1024px) {
-    padding: 2rem 12rem; /* Mais espaçamento nas laterais */
+    padding: 2rem 4rem; /* Mais espaçamento nas laterais */
   }
 `;
 

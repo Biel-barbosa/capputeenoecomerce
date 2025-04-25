@@ -14,9 +14,9 @@ const ProductPageContainer = styled.div`
   justify-content: center;
   flex-direction: column; /* Para telas pequenas */
 
-  /* Maior espaçamento nas laterais em telas maiores */
+  /* Ajustando espaçamento nas laterais para telas grandes */
   @media (min-width: 1024px) {
-    padding: 2rem 12rem; /* Mais espaçamento nas laterais */
+    padding: 2rem 4rem; /* Reduzindo o padding lateral */
   }
 `;
 
@@ -24,8 +24,8 @@ const ProductDetails = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr; /* Duas colunas */
   gap: 2rem;
-  max-width: 1200px;
   width: 100%;
+  max-width: 900px; /* Reduzindo a largura máxima */
   
   /* Ajuste para telas pequenas */
   @media (max-width: 768px) {
@@ -35,15 +35,10 @@ const ProductDetails = styled.div`
 `;
 
 const ProductImage = styled.img`
-  width: 550px; /* Diminuindo o tamanho da imagem */
-  height: 550px;
-  object-fit: cover; /* Garantindo que a imagem seja ajustada corretamente */
-  
-  /* Ajuste para telas pequenas */
-  @media (max-width: 768px) {
-    width: 100%; /* Imagem ocupa toda a largura */
-    height: auto; /* Altura automática */
-  }
+  width: 100%; /* Agora ocupa toda a largura disponível */
+  max-width: 550px; /* Limita o tamanho máximo */
+  height: auto; /* Mantém a altura proporcional */
+  object-fit: cover;
 `;
 
 const ProductInfo = styled.div`

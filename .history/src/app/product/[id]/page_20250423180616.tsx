@@ -5,19 +5,21 @@ import { useParams } from 'next/navigation';
 import { useCart } from '@/contexts/CartContexts';
 import styled from 'styled-components';
 import Header from '@/components/Header'; 
-import { Product } from '@/data/products';  // Importando o tipo Product
+
+type Product = {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+  category: string; 
+};
 
 const ProductPageContainer = styled.div`
   display: flex;
   padding: 2rem;
   background-color: #f9f9f9;
   justify-content: center;
-  flex-direction: column; /* Para telas pequenas */
-
-  /* Maior espaçamento nas laterais em telas maiores */
-  @media (min-width: 1024px) {
-    padding: 2rem 12rem; /* Mais espaçamento nas laterais */
-  }
 `;
 
 const ProductDetails = styled.div`
@@ -26,24 +28,12 @@ const ProductDetails = styled.div`
   gap: 2rem;
   max-width: 1200px;
   width: 100%;
-  
-  /* Ajuste para telas pequenas */
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr; /* Uma coluna */
-    gap: 1rem;
-  }
 `;
 
 const ProductImage = styled.img`
   width: 550px; /* Diminuindo o tamanho da imagem */
   height: 550px;
   object-fit: cover; /* Garantindo que a imagem seja ajustada corretamente */
-  
-  /* Ajuste para telas pequenas */
-  @media (max-width: 768px) {
-    width: 100%; /* Imagem ocupa toda a largura */
-    height: auto; /* Altura automática */
-  }
 `;
 
 const ProductInfo = styled.div`
@@ -52,11 +42,6 @@ const ProductInfo = styled.div`
   flex-direction: column;
   gap: 1.5rem;
   color: #41414D;
-
-  /* Ajuste de tamanho de fonte para telas menores */
-  @media (max-width: 768px) {
-    font-size: 1rem; /* Diminui o tamanho da fonte */
-  }
 `;
 
 const ProductPrice = styled.div`
@@ -72,13 +57,7 @@ const AddToCartButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   font-size: 1.2rem;
-  margin-top: 12rem;
-  
-  /* Ajuste para telas pequenas */
-  @media (max-width: 768px) {
-    margin-top: 2rem; /* Reduzindo o espaçamento na tela pequena */
-    font-size: 1rem; /* Reduzindo o tamanho da fonte */
-  }
+  margin-top: 12rem
 `;
 
 const CategoryLabel = styled.div`
@@ -86,12 +65,7 @@ const CategoryLabel = styled.div`
   font-weight: bold;
   color: #41414D;
   margin-bottom: 1rem;
-  padding-bottom: 10px;
-
-  /* Ajuste de tamanho da categoria para telas menores */
-  @media (max-width: 768px) {
-    font-size: 1.2rem;
-  }
+  padding-bottom: 10px; 
 `;
 
 const ProductPage = () => {
@@ -128,7 +102,7 @@ const ProductPage = () => {
 
   const categoryLabel = product.category.toLowerCase() === 't-shirts'
     ? 'Camiseta'
-    : product.category.toLowerCase() === 'mugs'
+    : product.category.toLowerCase() === 'mug'
       ? 'Caneca'
       : '';
 

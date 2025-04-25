@@ -16,9 +16,10 @@ export type CartContextType = {
     addToCart: (product: Product) => void;
     removeFromCart: (id: string) => void;
     updateCart: (items: CartItem[]) => void;
-    cartItemCount: number; 
+    cartItemCount: number; // ✅ Adicionado
 };
 
+// ✅ Agora exportado corretamente
 export const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
@@ -63,6 +64,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         saveCart(items);
     };
 
+    // ✅ Calculando quantidade total de itens
     const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
 
     return (

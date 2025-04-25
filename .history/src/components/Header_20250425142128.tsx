@@ -9,26 +9,20 @@ type HeaderProps = {
   onSearch?: (value: string) => void;
 };
 
+// Estilos
 const HeaderContainer = styled.header`
   width: 100%;
-  padding: 1rem 6vw;
-  background-color: #f5f5fa;
-  box-sizing: border-box;
-  overflow-x: hidden;
-`;
-
-const HeaderContent = styled.div`
-  width: 100%;
-  max-width: 1140px;
-  margin: 0 auto;
+  padding: 1.5rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: nowrap;
+  background-color: #f5f5fa;
+  box-sizing: border-box;
+  gap: 2rem;
 
   @media (max-width: 768px) {
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 `;
 
@@ -36,31 +30,27 @@ const Logo = styled.h1`
   font-size: 1.5rem;
   font-weight: 600;
   color: #5d5d6d;
+  margin: 0;
   white-space: nowrap;
-
-  @media (max-width: 768px) {
-    font-size: 1.2rem;
-  }
 `;
 
 const SearchWrapper = styled.div`
-  flex: 1;
-  max-width: 420px;
+  flex: 0 1 300px;
   display: flex;
   align-items: center;
   background: #e9e9f0;
-  padding: 0.4rem 0.75rem;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
 
   svg {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #737380;
-    margin-right: 0.4rem;
+    margin-right: 0.5rem;
   }
 
   @media (max-width: 768px) {
-    max-width: 180px;
-    flex-shrink: 1;
+    flex: 1;
+    width: 100%;
   }
 `;
 
@@ -71,20 +61,8 @@ const SearchInput = styled.input`
   font-size: 1rem;
   color: #737380;
 
-  &::placeholder {
-    color: #a8a8b3;
-  }
-
   &:focus {
     outline: none;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-
-    &::placeholder {
-      color: transparent;
-    }
   }
 `;
 
@@ -95,14 +73,12 @@ const CartButton = styled.button`
   cursor: pointer;
 
   svg {
-    font-size: 1.6rem;
+    font-size: 1.75rem;
     color: #5d5d6d;
   }
 
   @media (max-width: 768px) {
-    svg {
-      font-size: 1.4rem;
-    }
+    align-self: flex-end;
   }
 `;
 
@@ -123,27 +99,21 @@ const Header = ({ onSearch }: HeaderProps) => {
 
   return (
     <HeaderContainer>
-      <HeaderContent>
-        <Link href="/" passHref>
-          <Logo>capputeeno</Logo>
-        </Link>
+      <Link href="/" passHref>
+        <Logo>capputeeno</Logo>
+      </Link>
 
-        <SearchWrapper>
-          <FiSearch />
-          <SearchInput
-            type="text"
-            placeholder="Procurando por algo específico?"
-            onChange={(e) => onSearch?.(e.target.value)}
-          />
-        </SearchWrapper>
+      <SearchWrapper>
+        <FiSearch />
+        <SearchInput type="text" onChange={(e) => onSearch?.(e.target.value)} />
+      </SearchWrapper>
 
-        <Link href="/cart" passHref>
-          <CartButton>
-            <FiShoppingBag />
-            {cartItemCount > 0 && <CartCount>{cartItemCount}</CartCount>}
-          </CartButton>
-        </Link>
-      </HeaderContent>
+      <Link href="/cart" passHref>
+        <CartButton>
+          <FiShoppingBag />
+          {cartItemCount > 0 && <CartCount>{cartItemCount}</CartCount>}
+        </CartButton>
+      </Link>
     </HeaderContainer>
   );
 };

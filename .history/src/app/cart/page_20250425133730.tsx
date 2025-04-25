@@ -22,16 +22,6 @@ const Container = styled.div<{ isEmpty: boolean }>`
   justify-content: ${({ isEmpty }) => (isEmpty ? 'center' : 'space-between')};
   align-items: ${({ isEmpty }) => (isEmpty ? 'center' : 'flex-start')};
   gap: 2rem;
-
-  /* Responsividade para telas menores */
-  @media (max-width: 1024px) {
-    padding: 2rem;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    padding: 1rem;
-  }
 `;
 
 const ProductsSection = styled.div`
@@ -39,29 +29,16 @@ const ProductsSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-
-  /* Responsividade para telas menores */
-  @media (max-width: 768px) {
-    width: 100%;
-  }
 `;
 
 const ProductCard = styled.div`
   display: flex;
-  flex-direction: row; 
   gap: 1.5rem;
   background: #fff;
   padding: 1.5rem;
   border-radius: 12px;
-  align-items: center; 
+  align-items: flex-start;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-
-  /* Responsividade para telas menores */
-  @media (max-width: 768px) {
-    flex-direction: row;  
-    padding: 1rem;
-    gap: 1rem; 
-  }
 `;
 
 const ProductImage = styled.img`
@@ -69,11 +46,6 @@ const ProductImage = styled.img`
   height: 120px;
   object-fit: cover;
   border-radius: 8px;
-
-  @media (max-width: 768px) {
-    width: 100px;
-    height: 100px;
-  }
 `;
 
 const ProductInfo = styled.div`
@@ -83,16 +55,11 @@ const ProductInfo = styled.div`
   gap: 0.5rem;
 `;
 
-
 const Title = styled.h3`
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
   color: #41414d;
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
 `;
 
 const Price = styled.span`
@@ -150,23 +117,12 @@ const SummarySection = styled.div`
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   height: fit-content;
   color: #41414D;
-
-  /* Responsividade para telas menores */
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 1rem;
-  }
 `;
 
 const SummaryTitle = styled.h2`
   margin-bottom: 2rem;
   font-size: 1.5rem;
   color: #41414D;
-
-  /* Responsividade para telas menores */
-  @media (max-width: 768px) {
-    font-size: 1.25rem;
-  }
 `;
 
 const SummaryItem = styled.div`
@@ -174,10 +130,6 @@ const SummaryItem = styled.div`
   justify-content: space-between;
   margin-bottom: 1.25rem;
   font-size: 1rem;
-  
-  @media (max-width: 768px) {
-    font-size: 0.95rem;
-  }
 `;
 
 const Total = styled.strong`

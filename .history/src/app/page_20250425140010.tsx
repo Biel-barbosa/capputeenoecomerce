@@ -53,6 +53,8 @@ const Categories = styled.div`
     padding-bottom: 4px;
     transition: 0.2s;
     color: #737380;
+    padding-left: 2rem;  // Espaçamento para o lado esquerdo
+    padding-right: 2rem; // Espaçamento para o lado direito
 
     &.active {
       color: #41414d;

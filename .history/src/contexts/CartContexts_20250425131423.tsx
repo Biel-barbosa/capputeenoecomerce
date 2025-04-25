@@ -1,25 +1,18 @@
 'use client';
 
-import React, {
-    createContext,
-    useContext,
-    useState,
-    useEffect,
-    ReactNode,
-} from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Product } from '@/data/products';
 
 export type CartItem = Product & { quantity: number };
 
-export type CartContextType = {
+type CartContextType = {
     cart: CartItem[];
     addToCart: (product: Product) => void;
     removeFromCart: (id: string) => void;
     updateCart: (items: CartItem[]) => void;
-    cartItemCount: number; 
 };
 
-export const CartContext = createContext<CartContextType | undefined>(undefined);
+const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
     const [cart, setCart] = useState<CartItem[]>([]);
@@ -43,9 +36,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
         if (existing) {
             updatedCart = cart.map(item =>
-                item.id === product.id
-                    ? { ...item, quantity: item.quantity + 1 }
-                    : item
+                item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
             );
         } else {
             updatedCart = [...cart, { ...product, quantity: 1 }];
@@ -63,12 +54,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         saveCart(items);
     };
 
-    const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
-
     return (
-        <CartContext.Provider
-            value={{ cart, addToCart, removeFromCart, updateCart, cartItemCount }}
-        >
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateCart }}>
             {children}
         </CartContext.Provider>
     );

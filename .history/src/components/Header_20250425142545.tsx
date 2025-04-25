@@ -9,12 +9,12 @@ type HeaderProps = {
   onSearch?: (value: string) => void;
 };
 
+// Estilos
 const HeaderContainer = styled.header`
   width: 100%;
-  padding: 1rem 6vw;
+  padding: 1rem 6vw; // espaçamento maior nas laterais da tela
   background-color: #f5f5fa;
   box-sizing: border-box;
-  overflow-x: hidden;
 `;
 
 const HeaderContent = styled.div`
@@ -24,11 +24,12 @@ const HeaderContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: nowrap;
+  gap: 1.5rem; // espaçamento apertado entre os elementos
 
   @media (max-width: 768px) {
-    gap: 0.5rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
   }
 `;
 
@@ -37,30 +38,25 @@ const Logo = styled.h1`
   font-weight: 600;
   color: #5d5d6d;
   white-space: nowrap;
-
-  @media (max-width: 768px) {
-    font-size: 1.2rem;
-  }
 `;
 
 const SearchWrapper = styled.div`
   flex: 1;
-  max-width: 420px;
+  max-width: 380px;
   display: flex;
   align-items: center;
   background: #e9e9f0;
-  padding: 0.4rem 0.75rem;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
 
   svg {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #737380;
-    margin-right: 0.4rem;
+    margin-right: 0.5rem;
   }
 
   @media (max-width: 768px) {
-    max-width: 180px;
-    flex-shrink: 1;
+    width: 100%;
   }
 `;
 
@@ -80,10 +76,8 @@ const SearchInput = styled.input`
   }
 
   @media (max-width: 768px) {
-    font-size: 0.9rem;
-
     &::placeholder {
-      color: transparent;
+      color: transparent; // oculta o placeholder no mobile
     }
   }
 `;
@@ -95,14 +89,12 @@ const CartButton = styled.button`
   cursor: pointer;
 
   svg {
-    font-size: 1.6rem;
+    font-size: 1.75rem;
     color: #5d5d6d;
   }
 
   @media (max-width: 768px) {
-    svg {
-      font-size: 1.4rem;
-    }
+    align-self: flex-end;
   }
 `;
 
