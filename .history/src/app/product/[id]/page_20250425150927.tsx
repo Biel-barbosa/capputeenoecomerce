@@ -5,44 +5,46 @@ import { useParams } from 'next/navigation';
 import { useCart } from '@/contexts/CartContexts';
 import styled from 'styled-components';
 import Header from '@/components/Header';
-import { Product } from '@/data/products'; 
-import { toast, ToastContainer } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css'; 
+import { Product } from '@/data/products';  // Importando o tipo Product
+import { toast, ToastContainer } from 'react-toastify'; // Importando a biblioteca de toast
+import 'react-toastify/dist/ReactToastify.css'; // Importando os estilos do Toast
 
 const ProductPageContainer = styled.div`
   display: flex;
   padding: 2rem;
   background-color: #f9f9f9;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column; /* Para telas pequenas */
 
+  /* Maior espaçamento nas laterais em telas maiores */
   @media (min-width: 1024px) {
-    padding: 2rem 12rem;
+    padding: 2rem 12rem; /* Mais espaçamento nas laterais */
   }
 `;
 
 const ProductDetails = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr; /* Duas colunas */
   gap: 2rem;
   max-width: 1200px;
   width: 100%;
   
+  /* Ajuste para telas pequenas */
   @media (max-width: 768px) {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr; /* Uma coluna */
     gap: 1rem;
   }
 `;
 
 const ProductImage = styled.img`
-  width: 550px;
+  width: 550px; /* Diminuindo o tamanho da imagem */
   height: 550px;
-  object-fit: cover;
+  object-fit: cover; /* Garantindo que a imagem seja ajustada corretamente */
   
-
+  /* Ajuste para telas pequenas */
   @media (max-width: 768px) {
-    width: 100%; 
-    height: auto; 
+    width: 100%; /* Imagem ocupa toda a largura */
+    height: auto; /* Altura automática */
   }
 `;
 
@@ -53,8 +55,9 @@ const ProductInfo = styled.div`
   gap: 1.5rem;
   color: #41414D;
 
+  /* Ajuste de tamanho de fonte para telas menores */
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 1rem; /* Diminui o tamanho da fonte */
   }
 `;
 
@@ -73,9 +76,10 @@ const AddToCartButton = styled.button`
   font-size: 1.2rem;
   margin-top: 12rem;
   
+  /* Ajuste para telas pequenas */
   @media (max-width: 768px) {
-    margin-top: 2rem; 
-    font-size: 1rem; 
+    margin-top: 2rem; /* Reduzindo o espaçamento na tela pequena */
+    font-size: 1rem; /* Reduzindo o tamanho da fonte */
   }
 `;
 
@@ -86,6 +90,7 @@ const CategoryLabel = styled.div`
   margin-bottom: 1rem;
   padding-bottom: 10px;
 
+  /* Ajuste de tamanho da categoria para telas menores */
   @media (max-width: 768px) {
     font-size: 1.2rem;
   }
@@ -120,9 +125,10 @@ const ProductPage = () => {
   const handleAddToCart = () => {
     if (validPrice > 0) {
       addToCart(product);
+      // Exibir o toast após adicionar ao carrinho
       toast.success('Produto adicionado ao carrinho!', {
         position: 'top-right',
-        autoClose: 2000, 
+        autoClose: 2000, // Toast ficará visível por 2 segundos
       });
     }
   };
@@ -151,6 +157,7 @@ const ProductPage = () => {
         </ProductDetails>
       </ProductPageContainer>
 
+      {/* Toast container para exibir as notificações */}
       <ToastContainer />
     </>
   );

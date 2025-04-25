@@ -12,6 +12,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(404).json({ error: 'Produto não encontrado' });
   }
 
+  // Converter a data para string ISO
   const productWithDate = { 
     ...product,
     createdAt: product.createdAt instanceof Date ? product.createdAt.toISOString() : product.createdAt,

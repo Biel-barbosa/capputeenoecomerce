@@ -37,7 +37,7 @@ const Logo = styled.h1`
   font-weight: 600;
   color: #5d5d6d;
   white-space: nowrap;
-  font-family: var(--font-logo);
+    font-family: var(--font-saira-stencil);
 
   @media (max-width: 768px) {
     font-size: 1.2rem;

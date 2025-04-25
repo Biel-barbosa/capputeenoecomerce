@@ -73,9 +73,10 @@ const AddToCartButton = styled.button`
   font-size: 1.2rem;
   margin-top: 12rem;
   
+  /* Ajuste para telas pequenas */
   @media (max-width: 768px) {
-    margin-top: 2rem; 
-    font-size: 1rem; 
+    margin-top: 2rem; /* Reduzindo o espaçamento na tela pequena */
+    font-size: 1rem; /* Reduzindo o tamanho da fonte */
   }
 `;
 
@@ -86,6 +87,7 @@ const CategoryLabel = styled.div`
   margin-bottom: 1rem;
   padding-bottom: 10px;
 
+  /* Ajuste de tamanho da categoria para telas menores */
   @media (max-width: 768px) {
     font-size: 1.2rem;
   }
