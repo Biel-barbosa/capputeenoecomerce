@@ -3,11 +3,11 @@ import { getProductById } from '@/data/products';
 
 export async function GET(
     request: Request,
-    {params}: { params: Promise<{ id: string }> }
+    context: { params: { id: string } }
 ) {
-    const id = (await params).id
+    const { id } = context.params;
 
-    const product = getProductById(id);
+    const product =  getProductById(id); 
 
     if (!product) {
         return NextResponse.json(
