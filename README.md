@@ -1,7 +1,9 @@
 E-commerce Next.js
+
 Um projeto de e-commerce desenvolvido com Next.js e TypeScript, utilizando Styled Components para estilização.
 
 ✨ Funcionalidades
+
 Catálogo de produtos com paginação
 
 Filtragem de produtos por categoria
